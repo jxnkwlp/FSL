@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -21,6 +21,12 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Fsl.Abstractions\Fsl.Abstractions.csproj" />
     <ProjectReference Include="..\..\src\Fsl.Logging.Log4net\Fsl.Logging.Log4net.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

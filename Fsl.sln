@@ -17,7 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fsl.Logging.Log4net", "src\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{E669E64C-E735-42D9-A9E8-B831A4E4C212}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fsl.Test", "tests\Fsl.Test\Fsl.Test.csproj", "{1DBBBAB6-F150-41A5-A4EE-AC847B1E4BA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fsl.Test", "tests\Fsl.Test\Fsl.Test.csproj", "{1DBBBAB6-F150-41A5-A4EE-AC847B1E4BA0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{7236D950-7A2A-4078-9437-8C44E88C627B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{10433C7F-012C-44D2-9ABB-45E3ECE11043}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +50,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{8BACB8A1-C4B2-46D5-A993-AE646D4B53F5} = {10433C7F-012C-44D2-9ABB-45E3ECE11043}
 		{1DBBBAB6-F150-41A5-A4EE-AC847B1E4BA0} = {E669E64C-E735-42D9-A9E8-B831A4E4C212}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

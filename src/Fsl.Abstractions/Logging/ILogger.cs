@@ -1,20 +1,21 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fsl.Abstractions.Logging
 {
+	/// <summary>
+	/// Define an logger
+	/// </summary>
 	public interface ILogger
 	{
-		void Log(string category, LogLevel level, Exception ex, string message, params string[] args);
+		bool IsEnabled(LogLevel logLevel);
 
-		//void Log<T>(LogLevel level, Exception ex, string message, params string[] args);
+		void Log(string category, LogLevel level, Exception ex, string message, params object[] args);
 	}
 
-	public interface ILogger<T>
+	/// <summary>
+	/// Define an logger for <typeparamref name="T"/>
+	/// </summary>
+	public interface ILogger<T> : ILogger
 	{
-		void Log(LogLevel level, Exception ex, string message, params string[] args);
 	}
 }
