@@ -9,10 +9,12 @@ namespace Fsl.Abstractions.Logging
 	public interface ILogger
 	{
 		void Log(string category, LogLevel level, Exception ex, string message, params string[] args);
+
+		//void Log<T>(LogLevel level, Exception ex, string message, params string[] args);
 	}
 
 	public interface ILogger<T>
 	{
-		void Log<T>(LogLevel level, Exception ex, string message, params string[] args);
+		void Log(LogLevel level, Exception ex, string message, params string[] args);
 	}
 }

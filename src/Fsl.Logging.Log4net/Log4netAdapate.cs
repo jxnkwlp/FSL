@@ -3,44 +3,87 @@ using log4net;
 using log4net.Config;
 using log4net.Repository;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Fsl.Logging.Log4net
 {
 	public class Log4netAdapate : ILogger
 	{
-		ILog log;
+		private readonly ILoggerRepository _repository;
+
 		public Log4netAdapate()
 		{
-			ILoggerRepository repository = LogManager.CreateRepository("NETCoreRepository");
-			
-			string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log4net.config");
-			XmlConfigurator.Configure(repository, new System.IO.FileInfo(path));
+			_repository = LogManager.CreateRepository("NETCoreRepository");
 
-			log = LogManager.GetLogger(repository.Name, "NETCorelog4net");
+			string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log4net.config");
+
+			XmlConfigurator.Configure(_repository, new System.IO.FileInfo(path));
 		}
-		
+
 		public void Log(string category, LogLevel level, Exception ex, string message, params string[] args)
 		{
+			ILog logger = LogManager.GetLogger(_repository.Name, "NETCorelog4net");
 			switch (level)
 			{
 				case LogLevel.Debug:
-					log.DebugFormat(message,args);
+					
+					logger.DebugFormat(string.Format(message, args), ex);
 					break;
 				case LogLevel.Information:
-					log.InfoFormat(message, args);
+					logger.InfoFormat(string.Format(message, args), ex);
 					break;
 				case LogLevel.Warning:
-					log.WarnFormat(message, args);
+					logger.WarnFormat(string.Format(message, args), ex);
 					break;
 				case LogLevel.Error:
-					log.ErrorFormat(message, ex, args);
+					logger.ErrorFormat(string.Format(message, args), ex);
 					break;
 				case LogLevel.Critical:
-					log.FatalFormat(message, args);
+					logger.FatalFormat(string.Format(message, args), args);
 					break;
 			}
+		}
+
+	}
+
+	public class Log4netAdapate<T> : ILogger<T>
+	{
+		private readonly ILoggerRepository _repository;
+
+		public Log4netAdapate()
+		{
+			_repository = LogManager.CreateRepository("NETCoreRepositoryRelation");
+
+			string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log4net.config");
+
+			XmlConfigurator.Configure(_repository, new System.IO.FileInfo(path));
+
+		}
+
+
+		public void Log(LogLevel level, Exception ex, string message, params string[] args)
+		{
+			ILog logger = LogManager.GetLogger("NETCoreRepositoryRelation", typeof(T));
+
+			switch (level)
+			{
+				case LogLevel.Debug:
+
+					logger.DebugFormat(string.Format(message, args), ex);
+					break;
+				case LogLevel.Information:
+					logger.InfoFormat(string.Format(message, args), ex);
+					break;
+				case LogLevel.Warning:
+					logger.WarnFormat(string.Format(message, args), ex);
+					break;
+				case LogLevel.Error:
+					logger.ErrorFormat(string.Format(message, args), ex);
+					break;
+				case LogLevel.Critical:
+					logger.FatalFormat(string.Format(message, args), args);
+					break;
+			}
+
 		}
 	}
 }

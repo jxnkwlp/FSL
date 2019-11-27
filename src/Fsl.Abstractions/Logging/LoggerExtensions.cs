@@ -10,9 +10,10 @@ namespace Fsl.Abstractions.Logging
 		{
 			logger.Log(category, LogLevel.Information, null, message, args);
 		}
+
 		public static void Info<T>(this ILogger<T> logger, string message, params string[] args)
 		{
-			logger.Log<T>(LogLevel.Information, null, message, args);
+			logger.Log(LogLevel.Information, null, message, args);
 		}
 
 

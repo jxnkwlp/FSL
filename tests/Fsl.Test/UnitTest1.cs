@@ -15,7 +15,12 @@ namespace Fsl.Test
         public void TestLogging()
         {
 			ILogger logger = new Log4netAdapate();
-			logger.Info("info","test");
+			//LoggerExtensions.Info(logger,"","test");
+			LoggerExtensions.Info(logger, "", "test 111111");
+
+			ILogger<Tests> logger1 = new Log4netAdapate<Tests>();
+
+			logger1.Info("test22222222222");
 		}
     }
 }
